@@ -1,0 +1,53 @@
+@import '~sass/variables.scss';
+
+#header {
+    transition: all 0.3s;
+    z-index: 1000;
+    background-color:$primary-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 90px;
+    padding: 0 20px;
+    .logo {
+        img {
+
+        }
+    }
+
+    &.scrol-up{
+        height: 80px;
+    }
+
+    .cart-icon{
+        position: relative;
+        .badge{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: $secondary-color;
+            display: block !important;
+        }
+    }
+    
+    .cart-content-text{
+        margin-bottom: 0;
+        line-height: 1;
+    }
+
+    @media (max-width: 992px) {
+   
+        height: 70px;
+    
+        &.scrol-up{
+            height: 60px;
+        }
+        
+    }
+}
+
+

@@ -1,0 +1,19 @@
+#full-loader{
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    
+    &.hide{
+        opacity: 0;
+        z-index: -1;
+        transition: all ease-in-out 0.3s;
+    }
+}

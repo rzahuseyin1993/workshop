@@ -1,0 +1,90 @@
+@import './variables.scss';
+
+body {}
+
+.text-light-grey {
+    color: #7F7F7F;
+}
+
+.text-black {
+    color: #0D0D0D
+}
+
+.text-primary {
+    color: #0097CC !important;
+}
+
+
+.bg-primary {
+    background-color: $primary-color !important;
+}
+
+.bg-light-grey {
+    background-color: #F2F2F2;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-color: $secondary-color;
+}
+
+input {
+
+    &:focus,
+    &:active {
+        outline: none;
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        font-size: 12px;
+    }
+}
+
+button {
+
+    &:hover,
+    &:active,
+    &:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+}
+
+select {
+    background-color: white !important;
+    border: 1px solid $secondary-color;
+
+    &:focus,
+    &:active {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+}
+
+
+.was-validated .form-control:valid, .form-control.is-valid{
+    border-color: $secondary-color;
+    background-image: none;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid{
+    background-image: none;
+}
+
+
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus{
+    border-color: $secondary-color;
+}
+
+.price {
+    sub {
+        bottom: 0;
+        font-size: 50%;
+        margin-left: 5px;
+    }
+}

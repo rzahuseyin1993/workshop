@@ -1,0 +1,35 @@
+@import '~sass/variables.scss';
+#loader {
+    border: 4px solid $secondary-color;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: animate-loader 1s linear infinite;
+    animation: animate-loader 1s linear infinite;
+
+    &.white{
+        border: 4px solid white;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+    }
+}
+
+@-webkit-keyframes animate-loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

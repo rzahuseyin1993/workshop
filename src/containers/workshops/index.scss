@@ -1,0 +1,21 @@
+@import '~sass/variables.scss';
+#workshops {
+    padding: 150px 0;
+    .loadmore{
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        &::after{
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: $secondary-color;
+            margin: 0 auto;
+        }
+    }
+
+    @media screen and(max-width: 992px) {
+        padding: 90px 0 30px 0;
+    }
+}

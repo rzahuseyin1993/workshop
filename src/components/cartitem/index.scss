@@ -1,0 +1,34 @@
+@import '~sass/variables.scss';
+
+.cart-item {
+    transition: all 0.3s;
+    background-color: #F2F2F2;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+
+    .thumbnail {
+        width: 30% !important;
+        flex-basis: 30% !important;
+        min-width: 30% !important;
+    }
+
+    .content {
+        padding: 15px;
+        flex-grow: 1;
+
+        .title {
+            font-size: 18px;
+            margin-bottom: 1rem;
+        }
+
+        .quantity {
+            width: 40%;
+        }
+
+        .price {
+            margin: 0;
+        }
+    }
+}

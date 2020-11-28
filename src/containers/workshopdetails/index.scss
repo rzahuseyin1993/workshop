@@ -1,0 +1,29 @@
+@import '~sass/variables.scss';
+#workshops-details {
+    padding: 150px 0 1px 0;
+
+    .workshop-content{
+        padding-bottom: 80px;
+        .photo{
+            border-radius: 8px;
+            width: 100%;
+        }
+    }
+
+    
+    @media screen and(max-width: 992px) {
+        padding: 90px 0 1px 0;
+
+        .workshop-content{
+            .title{
+                font-size: 30px;
+            }
+            .user{
+                font-size: 15px;
+                .h4{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
