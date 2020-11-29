@@ -10,7 +10,7 @@ const self = {
 
     validateName: (value) => {
 
-        const re = /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/;
+        const re = /^(?=.{1,50}$)[A-Za-z]+(?:['_.\s][A-Za-z]+)*$/;
 
         return re.test(value);
     },
