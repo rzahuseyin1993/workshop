@@ -11,7 +11,7 @@ import {
     TOGGLE_CHECKOUTDLG
 
 } from '../actionTypes';
-
+import store from 'store'
 
 
 const INIT_STATE = {
@@ -20,7 +20,7 @@ const INIT_STATE = {
 
     isLoader: false,
 
-    cart: [],
+    cart: store.get('cart') || [],
 
     showCartDlg: false,
 
@@ -42,6 +42,8 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, isLoader: action.payload };
 
         case UPDATE_CART:
+
+            store.set('cart', action.payload)
 
             return { ...state, cart: action.payload };
 
