@@ -25,12 +25,22 @@ class CheckoutDlg extends Component {
         this.state = {
 
             values: { 
+
+                firstName: '',
+
+                lastName: '',
+
+                email: '',
+
+                address: '',
                 
                 dob: moment().format('YYYY-MM-DD'),
 
                 gender: 'Other',
 
-                agree: true
+                agree: true,
+
+                zipcode: ''
             },
 
             validateErrors: {},
@@ -74,13 +84,19 @@ class CheckoutDlg extends Component {
             else if (key === "email" && !utils.validateEmail(this.state.values[key]))
 
                 newValidateErrors[key] = "Your email address is invalid"
+            
+            else if (key === "address" && !this.state.values[key])
 
-            else if (key === "zipcode" && this.state.values[key] && !utils.validateZipcode(this.state.values[key]))
+                newValidateErrors[key] = "Your address is empty"
+
+            else if (key === "zipcode" && (!this.state.values[key] || !utils.validateZipcode(this.state.values[key])))
 
                 newValidateErrors[key] = "Your zipcode is invalid"
         })
 
         this.setState({ validateErrors: newValidateErrors })
+
+        return Object.keys(newValidateErrors).length === 0
     }
 
 
@@ -97,12 +113,15 @@ class CheckoutDlg extends Component {
     }
 
 
-
     checkOut = () => {
+
+        if (!this.formValudate()) return;
 
         if (Object.keys(this.state.validateErrors).length > 0) return;
 
         if (Object.keys(this.state.values).length < 8) return;
+
+        if (!this.state.values["agree"]) return;
 
         const params = {
 
