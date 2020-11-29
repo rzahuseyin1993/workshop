@@ -102,7 +102,7 @@ class CartDlg extends Component {
         return (
 
             <div id="cart-dlg" className={ this.props.showCartDlg ? 'show' : ''}>
-                <div className="cart-header d-flex justify-content-between">
+                <div className="cart-header d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center align-items-center">
                         <div className="cart-icon mr-2">
                             <img src="/images/cart.svg" alt="cart"/>
@@ -116,7 +116,7 @@ class CartDlg extends Component {
                             }
                         </h6>
                     </div>
-                    <img className=" pointer" src="/images/close-icon.svg" alt="close-icon" onClick={()=>{this.props.toggleCartDlg(false)}}/>
+                    <img className="close-btn pointer" src="/images/close-icon.svg" alt="close-icon" onClick={()=>{this.props.toggleCartDlg(false)}}/>
                 </div>
                 <div className="cart-content">
                     { displayProductions() }
