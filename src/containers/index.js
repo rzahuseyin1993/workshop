@@ -10,6 +10,8 @@ const CartDlg = loadable(() => import('components/cartdlg'))
 const CheckoutDlg = loadable(() => import('components/checkoutdlg'))
 const Workshops = loadable(() => import('./workshops'))
 const WorkshopDetails = loadable(() => import('./workshopdetails'))
+const NotFound = loadable(() => import('./notfound'))
+const InternalError = loadable(() => import('./internalerror'))
 
 
 
@@ -26,7 +28,6 @@ class RouteApp extends Component {
 
     render() {
 
-
         return (
             <React.Fragment>
                 <FullLoader/>
@@ -34,6 +35,8 @@ class RouteApp extends Component {
                 <Switch>
                     <Route path='/workshops/:id' component={WorkshopDetails}/>
                     <Route exact path='/workshops' component={Workshops}/>
+                    <Route exact path='/notfound' component={NotFound}/>
+                    <Route exact path='/internalerror' component={InternalError}/>
                     <Redirect path='/' to='/workshops'/>
                 </Switch>
                 <Footer/>

@@ -1,12 +1,14 @@
 const APIURL = {
 
-    SEARCH_CATEGORIES: `${process.env.REACT_APP_SERVER_URL}/categories`,
+    BASE_URL: process.env.REACT_APP_SERVER_URL,
 
-    SEARCH_WORKSHOPS: `${process.env.REACT_APP_SERVER_URL}/workshops`,
+    SEARCH_CATEGORIES: '/categories',
 
-    SEARCH_USERS: `${process.env.REACT_APP_SERVER_URL}/users`,
+    SEARCH_WORKSHOPS: '/workshops',
 
-    CREATE_ORDER: `${process.env.REACT_APP_SERVER_URL}/orders`,
+    SEARCH_USERS: '/users',
+
+    CREATE_ORDER: '/orders',
 }
 
 export default APIURL

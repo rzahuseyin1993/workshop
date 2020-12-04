@@ -22,9 +22,9 @@ class CommonLoader extends Component {
     }
 }
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const {isLoader} = reducer;
+    const {isLoader} = workshop;
 
     return {isLoader};
 }

@@ -92,9 +92,9 @@ class Header extends Component {
 
 
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const { cart } = reducer;
+    const { cart } = workshop;
 
     return { cart };
 }

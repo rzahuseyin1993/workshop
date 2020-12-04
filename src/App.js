@@ -13,7 +13,7 @@ class App extends Component {
     
     render() {
         return (
-            <div className="app">
+            <div className="app d-flex flex-column">
                 <Provider store={store}>
                     <Router>
                         <ScrollToP>

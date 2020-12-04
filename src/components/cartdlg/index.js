@@ -133,9 +133,9 @@ class CartDlg extends Component {
 
 
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const { cart, showCartDlg } = reducer;
+    const { cart, showCartDlg } = workshop;
 
     return { cart, showCartDlg };
 }

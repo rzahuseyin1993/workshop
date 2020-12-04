@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import loadable from '@loadable/component'
 import {
     showFullLoader,
-    updateCart
+    updateCart,
+    handleHTTPError
 } from 'store/actions'
 import {
     getWorkshop,
@@ -19,6 +20,7 @@ const Back = loadable(() => import('components/back'));
 const PricePanel = loadable(() => import('components/pricepanel'));
 const DateInfo = loadable(() => import('components/dateinfo'));
 const MobilePricePanel = loadable(() => import('components/pricepanel/mobile'));
+const Loader = loadable(() => import('components/loader'));
 
 
 class WorkshopDetails extends Component {
@@ -36,8 +38,6 @@ class WorkshopDetails extends Component {
             similarWorkshops: [],
 
             loading: false,
-
-            sw_loading: false
         }
     }
 
@@ -64,9 +64,11 @@ class WorkshopDetails extends Component {
 
         const params = { id: id}
 
-        this.setState({loading: true})
+        this.props.showFullLoader(true)
 
         getWorkshop(params).then(data => {
+
+            this.props.showFullLoader(false)
 
             this.setState({ 
                 
@@ -83,7 +85,7 @@ class WorkshopDetails extends Component {
                 this.searchSimilarWorkshops();
             })
 
-        }).catch(error => console.log(error))
+        }).catch(error => this.props.handleHTTPError(error, this.props))
     }
 
 
@@ -91,11 +93,15 @@ class WorkshopDetails extends Component {
 
         const params = { id: this.state.workshop.userId}
 
+        this.props.showFullLoader(true)
+
         getUser(params).then(data => {
+
+            this.props.showFullLoader(false)
 
             this.setState({user: data})
 
-        }).catch(error => console.log(error))
+        }).catch(error => this.props.handleHTTPError(error, this.props))
     }
 
     searchSimilarWorkshops = () => {
@@ -109,11 +115,13 @@ class WorkshopDetails extends Component {
             category: this.state.workshop.category,
         }
 
+        this.setState({loading: true})
+
         searchWorkshops(params).then(data => {
 
-            this.setState({similarWorkshops: data})
+            this.setState({similarWorkshops: data, loading: false})
         
-        }).catch(error => console.log(error))
+        }).catch(error =>this.props.handleHTTPError(error, this.props))
     }
 
 
@@ -136,7 +144,6 @@ class WorkshopDetails extends Component {
         this.props.history.push(`/workshops/${workshop.id}`)
     }
 
-
    
     goBack = () => {
 
@@ -148,7 +155,7 @@ class WorkshopDetails extends Component {
         if (!this.state.user) return null;
 
         return (
-            <div id="workshops-details" className="container-fluid">
+            <div id="workshops-details" className="container-fluid section">
                 <div className="row justify-content-center m-0">
                     <div className="col-xl-11">
                         <div className="row">
@@ -182,14 +189,18 @@ class WorkshopDetails extends Component {
                     </div>
                 </div>
                 {
-                    this.state.similarWorkshops.length > 0 &&
-                    <SimilarWorkshops
-                        workshops={this.state.similarWorkshops}
-                        onSelect={this.selectWorkshop}
-                        onAddToCart={this.addToCart}
-                    />
+                    this.state.loading ? <div className="w-100 d-flex justify-content-center align-items-center"><Loader/></div>:
+                    <React.Fragment>
+                        {
+                            this.state.similarWorkshops.length > 0 &&
+                            <SimilarWorkshops
+                                workshops={this.state.similarWorkshops}
+                                onSelect={this.selectWorkshop}
+                                onAddToCart={this.addToCart}
+                            />
+                        }
+                    </React.Fragment>
                 }
-                
             </div>
         )
     }
@@ -197,15 +208,15 @@ class WorkshopDetails extends Component {
 
 
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const { cart } = reducer;
+    const { cart } = workshop;
 
     return { cart };
 }
 
 export default withRouter(connect(mapStateToProps, {
     
-    showFullLoader, updateCart
+    showFullLoader, updateCart, handleHTTPError
 
 })(WorkshopDetails));

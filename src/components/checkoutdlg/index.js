@@ -4,7 +4,11 @@ import { withRouter } from 'react-router-dom';
 import { Modal, ModalBody, FormGroup, Label, Input} from 'reactstrap'
 import loadable from '@loadable/component'
 import moment from 'moment-timezone'
-import { toggleCheckoutDlg, updateCart } from 'store/actions'
+import { 
+    toggleCheckoutDlg, 
+    updateCart,
+    handleHTTPError
+} from 'store/actions'
 import { createOrder } from 'apis'
 import utils from 'utils'
 import './index.scss'
@@ -143,7 +147,7 @@ class CheckoutDlg extends Component {
 
             this.props.updateCart([])
 
-        }).catch(error => console.log(error))
+        }).catch(error =>this.props.handleHTTPError(error, this.props))
     }
 
 
@@ -282,17 +286,15 @@ class CheckoutDlg extends Component {
 
 
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const { cart, showCheckoutDlg } = reducer;
+    const { cart, showCheckoutDlg } = workshop;
 
     return { cart, showCheckoutDlg };
 }
 
 export default withRouter(connect(mapStateToProps, { 
     
-    toggleCheckoutDlg,
-
-    updateCart
+    toggleCheckoutDlg, updateCart, handleHTTPError
 
 })(CheckoutDlg));

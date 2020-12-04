@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import loadable from '@loadable/component'
 import {
     showFullLoader,
-    updateCart
+    updateCart,
+    handleHTTPError
 } from 'store/actions'
 import {
     searchCategories,
@@ -51,13 +52,13 @@ class Workshops extends Component {
 
         searchCategories().then(data => {
 
-            this.props.showFullLoader();
+            this.props.showFullLoader(false);
 
             this.setState({ categories: data})
 
             this.searchWorkshops()
 
-        }).catch(error => console.log(error))
+        }).catch(error => this.props.handleHTTPError(error, this.props))
     }
 
 
@@ -70,7 +71,7 @@ class Workshops extends Component {
             category: this.state.selectedCategory === 'All' ? undefined : this.state.selectedCategory,
         }
 
-        this.setState({ loading: true })
+        this.setState({ loading: true, workshops: [] })
 
         searchWorkshops(params).then(data => {
 
@@ -78,7 +79,7 @@ class Workshops extends Component {
 
             this.setState({ loading: false })
 
-        }).catch(error => console.log(error))
+        }).catch(error =>this.props.handleHTTPError(error, this.props))
     }
 
     
@@ -118,7 +119,7 @@ class Workshops extends Component {
     render() {
 
         return (
-            <div id="workshops" className="container-fluid">
+            <div id="workshops" className="container-fluid section">
                 <div className="row justify-content-center m-0">
                     <div className="col-xl-11">
                         <div className="row">
@@ -153,15 +154,16 @@ class Workshops extends Component {
 
 
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const { cart } = reducer;
+    const { cart } = workshop;
 
     return { cart };
 }
 
+
 export default withRouter(connect(mapStateToProps, {
     
-    showFullLoader, updateCart
+    showFullLoader, updateCart, handleHTTPError
 
 })(Workshops));

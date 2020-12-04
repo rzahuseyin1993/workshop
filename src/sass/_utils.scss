@@ -2,6 +2,14 @@
 
 body {}
 
+.app{
+    min-height: 100vh;
+}
+
+.section{
+    flex-grow: 1;
+}
+
 .text-light-grey {
     color: #7F7F7F;
 }

@@ -17,6 +17,7 @@ class FullLoader extends Component {
 
     render() {
 
+
         if (this.props.isFullLoader){
 
             document.body.style.overflow = 'hidden';
@@ -35,9 +36,9 @@ class FullLoader extends Component {
 }
 
 
-const mapStateToProps = (reducer) =>{
+const mapStateToProps = ({ workshop }) =>{
 
-    const {isFullLoader} = reducer;
+    const {isFullLoader} = workshop;
 
     return {isFullLoader};
 }
