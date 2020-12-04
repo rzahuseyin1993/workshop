@@ -71,7 +71,9 @@ class Workshops extends Component {
             category: this.state.selectedCategory === 'All' ? undefined : this.state.selectedCategory,
         }
 
-        this.setState({ loading: true, workshops: [] })
+        this.setState({ loading: true })
+
+        if(!limit) this.setState({ workshops: [] })
 
         searchWorkshops(params).then(data => {
 
