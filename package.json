@@ -1,6 +1,7 @@
 {
   "name": "workshop-front",
   "version": "0.1.0",
+  "author": "JaonMicle",
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.14.1",
